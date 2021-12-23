@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import NewExpense from './components/NewExpense/NewExpense';
+import Expenses from './components/Expenses/Expenses';
+import ExpenseHeader from './components/Expenses/ExpenseHeader';
+
+function App(){ 
+    const expenses = [
+        {title:'Shopping', date:new Date(2021, 10,10),price:'1280'},
+        {title:'Fixed deposit', date:new Date(2021, 10,17),price:'1580'},
+        {title:'Credit Card', date:new Date(2021, 10,19),price:'1980'},
+    ];
+    const header = [
+        {title:'Expense Manager'}
+    ];
+    
+    const addExpenseHandler = expense => {
+        console.log("In App.js");
+        console.log(expense);
+    };
+    // r;eturn React.createElement(
+    //     'div',
+    //     {},
+    //     React.createElement(ExpenseHeader, {title : header[0].title}),
+    //     React.createElement(Expenses, { items : expenses})
+    // );
+
+    return (
+        <div>
+            <ExpenseHeader title={header[0].title} />
+            <NewExpense onAddExpense={addExpenseHandler} />
+            <Expenses items={expenses} />
+        </div>
+    );
 }
 
 export default App;
